@@ -2,39 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Sustainable Agriculture Gamification Design System 
+All colors MUST be HSL. Gamified, nature-inspired theme.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 120 40% 98%;
+    --foreground: 140 30% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 140 30% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 140 30% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sustainable Green Primary */
+    --primary: 135 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 135 80% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Earth Brown Secondary */
+    --secondary: 30 40% 85%;
+    --secondary-foreground: 30 60% 25%;
+    --secondary-dark: 30 60% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 120 20% 95%;
+    --muted-foreground: 140 20% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Sky Blue Accent */
+    --accent: 200 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 200 70% 85%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Success/Growth Green */
+    --success: 120 60% 50%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Warning/Energy Amber */
+    --warning: 45 90% 60%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 120 30% 88%;
+    --input: 120 20% 94%;
+    --ring: 135 70% 45%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(135 70% 45%), hsl(120 60% 50%), hsl(200 80% 60%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(120 20% 98%));
+    --gradient-success: linear-gradient(135deg, hsl(120 60% 50%), hsl(135 70% 45%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(135 70% 45% / 0.2);
+    --shadow-glow: 0 0 40px hsl(135 80% 55% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(140 30% 15% / 0.1);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
