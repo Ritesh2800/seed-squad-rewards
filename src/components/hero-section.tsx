@@ -4,7 +4,8 @@ import { Badge } from "./ui/badge-custom";
 import { Leaf, Zap, Users, Trophy, Smartphone, Globe } from "lucide-react";
 import heroImage from "@/assets/hero-agriculture.jpg";
 
-export const HeroSection = () => {
+type HeroSectionProps = { onStart?: () => void; onViewLeaderboard?: () => void };
+export const HeroSection = ({ onStart, onViewLeaderboard }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background with gradient overlay */}
@@ -46,11 +47,11 @@ export const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-gradient-success text-white shadow-elegant hover:shadow-glow px-8 py-6 text-lg">
+            <Button size="lg" className="bg-gradient-success text-white shadow-elegant hover:shadow-glow px-8 py-6 text-lg" onClick={onStart}>
               <Smartphone className="mr-2 h-5 w-5" />
               Start Your Journey
             </Button>
-            <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg">
+            <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg" onClick={onViewLeaderboard}>
               <Trophy className="mr-2 h-5 w-5" />
               View Leaderboard
             </Button>

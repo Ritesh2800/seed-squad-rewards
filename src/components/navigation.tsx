@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 
 interface NavigationProps {
-  currentView: 'home' | 'dashboard' | 'leaderboard';
-  onViewChange: (view: 'home' | 'dashboard' | 'leaderboard') => void;
+  currentView: 'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile';
+  onViewChange: (view: 'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile') => void;
 }
 
 export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
@@ -63,7 +63,12 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
               Leaderboard
             </Button>
 
-            <Button variant="ghost" size="sm" className="flex items-center gap-2">
+            <Button 
+              variant={currentView === 'community' ? 'default' : 'ghost'} 
+              size="sm" 
+              className="flex items-center gap-2"
+              onClick={() => onViewChange('community')}
+            >
               <Users className="w-4 h-4" />
               Community
             </Button>
@@ -86,14 +91,19 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
             </div>
 
             {/* Settings */}
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={() => onViewChange('settings')}>
               <Settings className="w-4 h-4" />
             </Button>
 
             {/* User Profile */}
-            <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
+            <button 
+              type="button"
+              onClick={() => onViewChange('profile')}
+              className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm hover:shadow-card transition"
+              aria-label="Open profile"
+            >
               U
-            </div>
+            </button>
           </div>
         </div>
 
@@ -126,7 +136,7 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
             <Trophy className="w-4 h-4" />
           </Button>
 
-          <Button variant="ghost" size="sm" className="flex-1">
+          <Button variant={currentView === 'community' ? 'default' : 'ghost'} size="sm" className="flex-1" onClick={() => onViewChange('community')}>
             <Users className="w-4 h-4" />
           </Button>
         </div>
