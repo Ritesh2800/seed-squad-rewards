@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge-custom";
+import { LanguageSelector } from "./language-selector";
+import { useLanguage } from "@/contexts/language-context";
 import { 
   Home, 
   LayoutDashboard, 
@@ -16,6 +18,7 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
+  const { t } = useLanguage();
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-card">
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -40,7 +43,7 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
               className="flex items-center gap-2"
             >
               <Home className="w-4 h-4" />
-              Home
+              {t('home')}
             </Button>
             
             <Button
@@ -50,7 +53,7 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
               className="flex items-center gap-2"
             >
               <LayoutDashboard className="w-4 h-4" />
-              Dashboard
+              {t('dashboard')}
             </Button>
             
             <Button
@@ -60,7 +63,7 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
               className="flex items-center gap-2"
             >
               <Trophy className="w-4 h-4" />
-              Leaderboard
+              {t('leaderboard')}
             </Button>
 
             <Button 
@@ -70,12 +73,15 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
               onClick={() => onViewChange('community')}
             >
               <Users className="w-4 h-4" />
-              Community
+              {t('community')}
             </Button>
           </div>
 
           {/* User Actions */}
           <div className="flex items-center gap-3">
+            {/* Language Selector */}
+            <LanguageSelector />
+            
             {/* Notifications */}
             <Button variant="ghost" size="sm" className="relative">
               <Bell className="w-4 h-4" />
@@ -91,7 +97,7 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
             </div>
 
             {/* Settings */}
-            <Button variant="ghost" size="sm" onClick={() => onViewChange('settings')}>
+            <Button variant="ghost" size="sm" onClick={() => onViewChange('settings')} aria-label={t('settings')}>
               <Settings className="w-4 h-4" />
             </Button>
 
@@ -100,7 +106,7 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
               type="button"
               onClick={() => onViewChange('profile')}
               className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm hover:shadow-card transition"
-              aria-label="Open profile"
+              aria-label={t('profile')}
             >
               U
             </button>

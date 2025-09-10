@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge-custom";
 import { ProgressRing } from "./ui/progress-ring";
 import { Progress } from "@/components/ui/progress";
+import { useLanguage } from "@/contexts/language-context";
 import { 
   Droplets, 
   Leaf, 
@@ -60,13 +61,14 @@ const achievements = [
 ];
 
 export const Dashboard = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
           <div>
-            <h1 className="text-4xl font-bold text-foreground mb-2">Welcome back, Farmer!</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-2">{t('welcomeBack')}</h1>
             <p className="text-muted-foreground flex items-center gap-2">
               <MapPin className="w-4 h-4" />
               Nashik District, Maharashtra
@@ -78,7 +80,7 @@ export const Dashboard = () => {
               <CardContent className="p-4 flex items-center gap-3">
                 <Coins className="w-6 h-6" />
                 <div>
-                  <p className="text-sm opacity-90">Green Points</p>
+                  <p className="text-sm opacity-90">{t('greenPoints')}</p>
                   <p className="text-2xl font-bold">2,450</p>
                 </div>
               </CardContent>
@@ -99,7 +101,7 @@ export const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Active Missions</p>
+                  <p className="text-sm text-muted-foreground">{t('activeMissions')}</p>
                   <p className="text-3xl font-bold text-primary">3</p>
                 </div>
                 <Target className="w-8 h-8 text-primary" />
@@ -111,7 +113,7 @@ export const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Completion Rate</p>
+                  <p className="text-sm text-muted-foreground">{t('completionRate')}</p>
                   <p className="text-3xl font-bold text-success">89%</p>
                 </div>
                 <TrendingUp className="w-8 h-8 text-success" />
@@ -123,7 +125,7 @@ export const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Clan Rank</p>
+                  <p className="text-sm text-muted-foreground">{t('clanRank')}</p>
                   <p className="text-3xl font-bold text-accent">#12</p>
                 </div>
                 <Users className="w-8 h-8 text-accent" />
@@ -135,7 +137,7 @@ export const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Achievements</p>
+                  <p className="text-sm text-muted-foreground">{t('achievements')}</p>
                   <p className="text-3xl font-bold text-warning">8</p>
                 </div>
                 <Trophy className="w-8 h-8 text-warning" />
