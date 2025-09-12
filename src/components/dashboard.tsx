@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge-custom";
 import { ProgressRing } from "./ui/progress-ring";
 import { Progress } from "@/components/ui/progress";
+import { WeatherAlerts } from "./weather-alerts";
 import { useLanguage } from "@/contexts/language-context";
 import { 
   Droplets, 
@@ -14,42 +15,60 @@ import {
   Target,
   MapPin,
   Clock,
-  Coins
+  Coins,
+  Award,
+  Zap,
+  Activity
 } from "lucide-react";
 
 const mockMissions = [
   {
     id: 1,
-    title: "Water Conservation Challenge",
-    description: "Implement drip irrigation to save 20% water this week",
+    title: "Banana Field Mulching Challenge",
+    description: "Complete 3 weeks of mulching on your 5.5 acre banana plantation for optimal moisture retention",
     progress: 65,
-    reward: 150,
+    reward: 250,
     type: "water",
     difficulty: "medium",
     timeLeft: "3 days",
-    icon: Droplets
+    icon: Droplets,
+    cropSpecific: "banana"
   },
   {
     id: 2,
-    title: "Companion Planting Mission",
-    description: "Plant 2 rows of nitrogen-fixing crops alongside wheat",
+    title: "Bio-Pesticide Transition for Cotton",
+    description: "Switch to bio-pesticides for your cotton crop this season - perfect for your farm size",
     progress: 25,
-    reward: 200,
+    reward: 350,
     type: "soil",
     difficulty: "easy",
     timeLeft: "1 week",
-    icon: Leaf
+    icon: Leaf,
+    cropSpecific: "cotton"
   },
   {
     id: 3,
-    title: "Solar Integration Project",
-    description: "Install solar-powered monitoring system",
+    title: "Companion Planting: Wheat Fields",
+    description: "Plant nitrogen-fixing legumes alongside wheat in 2 acres of your farm",
     progress: 0,
-    reward: 500,
-    type: "energy",
-    difficulty: "hard",
+    reward: 300,
+    type: "soil",
+    difficulty: "medium",
     timeLeft: "2 weeks",
-    icon: Sun
+    icon: Target,
+    cropSpecific: "wheat"
+  },
+  {
+    id: 4,
+    title: "Smart Irrigation for 5.5 Acres",
+    description: "Install drip irrigation system optimized for your farm size and crop mix",
+    progress: 10,
+    reward: 500,
+    type: "water",
+    difficulty: "hard",
+    timeLeft: "3 weeks",
+    icon: Droplets,
+    cropSpecific: "all"
   }
 ];
 
@@ -153,7 +172,7 @@ export const Dashboard = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="w-5 h-5 text-primary" />
-                  Active Missions
+                  Personalized Missions
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -208,31 +227,68 @@ export const Dashboard = () => {
             </Card>
           </div>
 
-          {/* Achievements & Quick Actions */}
+          {/* Progress Tracker & Achievements */}
           <div className="space-y-6">
+            {/* Sustainability Score */}
             <Card className="bg-gradient-card border-0 shadow-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-warning" />
-                  Recent Achievements
+                  <Activity className="w-5 h-5 text-success" />
+                  Sustainability Score
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <ProgressRing progress={82} size={100} className="text-success mx-auto mb-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-success">82</p>
+                    <p className="text-xs text-muted-foreground">Score</p>
+                  </div>
+                </ProgressRing>
+                <div className="grid grid-cols-3 gap-2 mt-4 text-sm">
+                  <div className="text-center">
+                    <p className="font-bold text-success">+15</p>
+                    <p className="text-muted-foreground">This Week</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-primary">A+</p>
+                    <p className="text-muted-foreground">Grade</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-accent">#12</p>
+                    <p className="text-muted-foreground">Rank</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Learning Badges */}
+            <Card className="bg-gradient-card border-0 shadow-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-warning" />
+                  Learning Badges
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  {achievements.map((achievement, index) => (
-                    <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
-                      <div className={`p-2 rounded-full ${achievement.earned ? 'bg-success/20' : 'bg-muted'}`}>
-                        <Trophy className={`w-4 h-4 ${achievement.earned ? 'text-success' : 'text-muted-foreground'}`} />
-                      </div>
-                      <div className="flex-1">
-                        <p className={`font-medium text-sm ${achievement.earned ? 'text-foreground' : 'text-muted-foreground'}`}>
-                          {achievement.name}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { name: "Water Saver", icon: Droplets, earned: true, color: "text-accent" },
+                    { name: "Soil Expert", icon: Leaf, earned: true, color: "text-success" },
+                    { name: "Solar Pioneer", icon: Sun, earned: false, color: "text-muted-foreground" },
+                    { name: "Pest Manager", icon: Zap, earned: true, color: "text-warning" },
+                    { name: "Crop Master", icon: Trophy, earned: false, color: "text-muted-foreground" },
+                    { name: "Community Leader", icon: Users, earned: false, color: "text-muted-foreground" }
+                  ].map((badge, index) => {
+                    const Icon = badge.icon;
+                    return (
+                      <div key={index} className={`text-center p-2 rounded-lg ${badge.earned ? 'bg-muted/50' : 'bg-muted/20'}`}>
+                        <Icon className={`w-6 h-6 mx-auto mb-1 ${badge.color}`} />
+                        <p className={`text-xs ${badge.earned ? 'text-foreground' : 'text-muted-foreground'}`}>
+                          {badge.name}
                         </p>
-                        <p className="text-xs text-muted-foreground">{achievement.description}</p>
                       </div>
-                      {achievement.earned && <Badge variant="achievement" className="text-xs">Earned</Badge>}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
@@ -248,6 +304,9 @@ export const Dashboard = () => {
             </Card>
           </div>
         </div>
+
+        {/* Weather Alerts Section */}
+        <WeatherAlerts />
       </div>
     </div>
   );
