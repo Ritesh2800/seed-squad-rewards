@@ -104,6 +104,19 @@ export const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Profile Link */}
+            <Card className="bg-gradient-card border-0 shadow-card cursor-pointer hover:shadow-elegant transition-all duration-300">
+              <CardContent className="p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
+                  U
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">{t('yourProfile')}</p>
+                  <p className="text-sm font-semibold text-foreground">{t('viewProfile')}</p>
+                </div>
+              </CardContent>
+            </Card>
             
             <ProgressRing progress={75} size={80} className="text-primary">
               <div className="text-center">

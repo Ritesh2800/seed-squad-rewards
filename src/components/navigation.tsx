@@ -10,12 +10,13 @@ import {
   Settings,
   Bell,
   Coins,
-  Gift
+  Gift,
+  Target
 } from "lucide-react";
 
 interface NavigationProps {
-  currentView: 'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile' | 'rewards' | 'setup';
-  onViewChange: (view: 'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile' | 'rewards' | 'setup') => void;
+  currentView: 'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile' | 'rewards' | 'setup' | 'quests';
+  onViewChange: (view: 'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile' | 'rewards' | 'setup' | 'quests') => void;
 }
 
 export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
@@ -78,13 +79,23 @@ export const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
             </Button>
 
             <Button
+              variant={currentView === 'quests' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => onViewChange('quests')}
+              className="flex items-center gap-2"
+            >
+              <Target className="w-4 h-4" />
+              {t('quests')}
+            </Button>
+
+            <Button
               variant={currentView === 'rewards' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => onViewChange('rewards')}
               className="flex items-center gap-2"
             >
               <Gift className="w-4 h-4" />
-              Rewards
+              {t('rewards')}
             </Button>
           </div>
 

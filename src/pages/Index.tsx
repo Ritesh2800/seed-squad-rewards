@@ -8,9 +8,10 @@ import { SettingsPage } from "@/components/settings";
 import { ProfilePage } from "@/components/profile";
 import { RewardsPage } from "@/components/rewards";
 import { CropSetup } from "@/components/crop-setup";
+import { QuestsPage } from "@/components/quests";
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile' | 'rewards' | 'setup'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'dashboard' | 'leaderboard' | 'community' | 'settings' | 'profile' | 'rewards' | 'setup' | 'quests'>('home');
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
   const handleSetupComplete = (data: { crops: string[], farmSize: string, location: string }) => {
@@ -44,6 +45,8 @@ const Index = () => {
         return <ProfilePage />;
       case 'rewards':
         return <RewardsPage />;
+      case 'quests':
+        return <QuestsPage />;
       default:
         return <HeroSection onStart={handleStartJourney} onViewLeaderboard={() => setCurrentView('leaderboard')} />;
     }

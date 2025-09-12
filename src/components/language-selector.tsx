@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Globe, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
-type Language = 'en' | 'hi' | 'mr';
+type Language = 'en' | 'hi' | 'mr' | 'ml';
 
 const languages = [
   { code: 'en' as Language, name: 'English', flag: '🇺🇸' },
   { code: 'hi' as Language, name: 'हिंदी', flag: '🇮🇳' },
-  { code: 'mr' as Language, name: 'मराठी', flag: '🇮🇳' }
+  { code: 'mr' as Language, name: 'मराठी', flag: '🇮🇳' },
+  { code: 'ml' as Language, name: 'മലയാളം', flag: '🇮🇳' }
 ];
 
 export const LanguageSelector = () => {
